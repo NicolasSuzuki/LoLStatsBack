@@ -1,7 +1,6 @@
-const { default: axios } = require("axios");
 const express = require("express");
 const cors = require("cors")
-const { json } = require("express");
+const { json } = express;
 require("dotenv").config()
 const app = express();
 
