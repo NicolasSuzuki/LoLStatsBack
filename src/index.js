@@ -18,7 +18,6 @@ app.get('/server-status', async (req, res) => {
     const r = await axios.get(`${process.env.LOL_URL}/lol/status/v4/platform-data`,
         { headers: { 'X-Riot-Token': process.env.LOL_KEY } })
         .catch(e => { res.status(e.response.status).json(e.response.data) });
-    console.log(r.data)
     return r;
 })
 
@@ -26,7 +25,6 @@ app.get('/summoner/me', async (req, res) => {
     const r = await axios.get(`${process.env.LOL_URL}/lol/summoner/v4/summoners/me`,
         { headers: { 'X-Riot-Token': process.env.LOL_KEY } })
         .catch(e => { res.status(e.response.status).json(e.response.data) });
-    console.log(r);
     return r;
 })
 
