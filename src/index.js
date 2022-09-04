@@ -39,6 +39,19 @@ app.get('summoner/match', async (req, res) => {
 
         return activeInfo.data;
 })
+app.get('queue/allQueues', async (req, res) => {
+
+    const myUser = await axios.get(`${process.env.LOL_URL}/lol/summoner/v4/summoners/me`,
+        { headers: { 'X-Riot-Token': process.env.LOL_KEY } })
+        .catch(e => { res.status(e.response.status).json(e.response.data) });
+    const {accountId} = myUser;
+    const activeInfo = await axios.get(`${process.env.LOL_URL}/lol/league/v4/entries/by-summoner/${accountId}`,
+        { headers: { 'X-Riot-Token': process.env.LOL_KEY } })
+        .catch(e => res.status(e.response.status).json(e.response.data));
+
+        return activeInfo.data;
+})
+
 app.get('/summoner/:summonerName', async (req, res) => {
     const { summonerName } = req.params;
 
